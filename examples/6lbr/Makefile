@@ -218,6 +218,8 @@ all_native:
 	$(MAKE) TARGET=native bin/cetic_6lbr_6lr
 	$(MAKE) TARGET=native clean
 	$(MAKE) TARGET=native bin/cetic_6lbr_rpl_root
+	$(MAKE) TARGET=native clean
+	$(MAKE) TARGET=native bin/cetic_6lbr_6lowpan_nd_rpl_router
 
 bin_econotag/cetic_6lbr_smart_bridge:
 	$(MAKE) TARGET=econotag CETIC_6LBR_SMARTBRIDGE=1 $(ECONOTAG_CONF)
