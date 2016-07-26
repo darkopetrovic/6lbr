@@ -21,14 +21,16 @@ mote_type_slipradio = {	'shortname':'slipradio',
 			'maketarget':'slip-radio', 
 			'makeargs':'', 
 			'description':"6LBR Slip Radio",
-			'serial':'socket' }
+			'serial':'socket',
+			'mote_type':'sky'  }
 
-mote_type_6lbrdemo_6lowpan = {	'shortname':'node', 
-			'fw_folder':'[CONTIKI_DIR]/examples/6lbr/test/coojagen/firmwares/6lbr-demo-6lh', 
-			'maketarget':'6lbr-demo-6lh', 
+mote_type_6lowpan_nd_node = {	'shortname':'node', 
+			'fw_folder':'/opt/contiki/contiki-darko/examples/6lowpan-nd-rpl', 
+			'maketarget':'6lowpan-nd-example', 
 			'makeargs':'', 
 			'description':"6lowpan-nd nodes",
-			'serial':'pty' }
+			'serial':'pty',
+			'mote_type':'wismote' }
 
 mote_types.append(mote_type_slipradio)
-mote_types.append(mote_type_6lbrdemo_6lowpan)
+mote_types.append(mote_type_6lowpan_nd_node)

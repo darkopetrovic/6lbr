@@ -48,6 +48,35 @@ class SimMoteType:
 		text = text.replace('MAKEARGS', self.makeargs)
 		return text
 
+	def text_from_template2(self):
+		text ="""    <motetype>
+      org.contikios.cooja.mspmote.WismoteMoteType
+      <identifier>SHORTNAME</identifier>
+      <description>DESCRIPTION</description>
+      <source EXPORT="discard">FIRMWAREPATH</source>
+      <commands EXPORT="discard">make FIRMWARE.wismote TARGET=wismote MAKEARGS</commands>
+      <firmware EXPORT="copy">FIRMWAREBIN</firmware>
+      <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
+      <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspClock</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspMoteID</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspButton</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.Msp802154Radio</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspDefaultSerial</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspLED</moteinterface>
+      <moteinterface>org.contikios.cooja.mspmote.interfaces.MspDebugOutput</moteinterface>
+    </motetype>\r\n"""
+		text = text.replace('FIRMWAREPATH', self.fw_folder + os.path.sep + self.maketarget + '.c')
+		text = text.replace('FIRMWAREBIN', self.fw_folder + os.path.sep + self.maketarget + '.wismote')
+		text = text.replace('SHORTNAME', self.shortname)
+		text = text.replace('DESCRIPTION', self.description)
+		text = text.replace('FIRMWARE', self.maketarget)
+		text = text.replace('MAKEARGS', self.makeargs)
+		return text
+
 class SimMote:
 	socket_base_port = 60000
 	def __init__(self, mote_type, nodeid):
@@ -144,6 +173,29 @@ class Sim():
 		else:
 			#if there are more than one, we know they are not template motetypes. We append a new one
 			self.simfile_lines = insert_list_at(motetype_text.splitlines(1), self.simfile_lines, motetype_close_indexes[-1]+1)
+
+	def insert_wismote_motetype(self, mote_type):
+
+		motetype_text = mote_type.text_from_template2()
+
+		motetype_indexes = all_indices("    <motetype>\r\n",self.simfile_lines)
+		motetype_close_indexes = all_indices("    </motetype>\r\n",self.simfile_lines)
+
+		if len(motetype_indexes) == 1:
+			#in case of 1 motetype, check if it's the template version or a real mote
+			if self.simfile_lines[motetype_indexes[0]+2] == "      <identifier>templatewismote1</identifier>\r\n":
+				#template version, we first remove the template motetype lines
+				count = motetype_close_indexes[0] - motetype_indexes[0] + 1
+				remove_n_at(motetype_indexes[0], count, self.simfile_lines)
+				#insert the mote type
+				self.simfile_lines = insert_list_at(motetype_text.splitlines(1), self.simfile_lines, motetype_indexes[0]) #1= we keep the endlines
+			else:
+				self.simfile_lines = insert_list_at(motetype_text.splitlines(1), self.simfile_lines, motetype_close_indexes[0]+1, )
+
+		else:
+			#if there are more than one, we know they are not template motetypes. We append a new one
+			self.simfile_lines = insert_list_at(motetype_text.splitlines(1), self.simfile_lines, motetype_close_indexes[-1]+1)
+
 
 	def add_mote(self, mote):
 
@@ -459,7 +511,12 @@ class ConfigParser():
 							mote_type['serial'],
 							mote_type['description'])
 			self.mote_types.append(mote_type_obj)
-			sim.insert_sky_motetype(mote_type_obj)
+
+			if mote_type['mote_type'] == 'wismote':
+				sim.insert_wismote_motetype(mote_type_obj)
+			else:
+				sim.insert_sky_motetype(mote_type_obj)
+			
 
 		sim.udgm_set_range(conf.tx_range)
 		sim.udgm_set_interference_range(conf.tx_interference)
