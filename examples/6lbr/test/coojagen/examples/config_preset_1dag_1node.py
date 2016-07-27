@@ -21,21 +21,24 @@ mote_type_slipradio = {	'shortname':'slipradio',
 			'maketarget':'slip-radio', 
 			'makeargs':'', 
 			'description':"6LBR Slip Radio",
-			'serial':'socket' }
+			'serial':'socket',
+			'mote_type':'sky' }
 
 mote_type_6lbrdemo_delay = {	'shortname':'node_delay', 
 				'fw_folder':'[CONTIKI_DIR]/examples/6lbr/test/coojagen/firmwares/6lbr-demo-ndp', 
 				'maketarget':'6lbr-demo-ndp', 
 				'makeargs':'', 
 				'description':"6LBR Demo with delay",
-				'serial':'pty' }
+				'serial':'pty',
+				'mote_type':'sky' }
 
 mote_type_6lbrdemo = {	'shortname':'node', 
 			'fw_folder':'[CONTIKI_DIR]/examples/6lbr/test/coojagen/firmwares/6lbr-demo-ndp', 
 			'maketarget':'6lbr-demo-ndp', 
 			'makeargs':'', 
 			'description':"6LBR Demo",
-			'serial':'pty' }
+			'serial':'pty',
+			'mote_type':'sky' }
 
 mote_types.append(mote_type_slipradio)
 mote_types.append(mote_type_6lbrdemo_delay)

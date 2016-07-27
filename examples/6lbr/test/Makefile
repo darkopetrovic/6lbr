@@ -15,6 +15,12 @@ launch-6lbr-router-1-cooja:
 launch-6lbr-6lowpan-rpl-router-1-cooja:
 	../package/usr/bin/6lbr conf-templates/cooja-1-6lowpan-rpl-router.conf
 
+launch-6lbr-6lowpan-rpl-router:
+	../package/usr/bin/6lbr conf-templates/6lowpan-nd-rpl-router.conf
+
+launch-6lbr-6lowpan-rpl-router-sim:
+	../package/usr/bin/6lbr conf-templates/6lowpan-nd-rpl-router-sim.conf
+
 launch-6lbr-smartbridge-2br-cooja:
 	@echo "*************************************************************************"
 	@echo "* Creating bridge in LAZY mode, needs to be deleted manually at the end *"
@@ -25,6 +31,10 @@ launch-6lbr-smartbridge-2br-cooja:
 	../package/usr/bin/6lbr conf-templates/cooja-2-smartbridge-b.conf &
 
 cooja-small: preset_1dag_10nodes.csc build-cooja config-cooja launch-cooja
+
+cooja-6lowpan: preset_1dag_1node_6lowpan.csc build-cooja config-cooja launch-cooja
+
+cooja-6lowpan-nd: preset_1dag_1node_6lowpan_nd.csc build-cooja config-cooja launch-cooja
 
 cooja-2br-grid: grid_2br_3x6.csc build-cooja config-cooja launch-cooja
 
@@ -61,6 +71,7 @@ clean-cooja-firmwares:
 	cd ${COOJAGEN}/firmwares/6lbr-demo-delay && $(MAKE) TARGET=sky clean
 	cd ${COOJAGEN}/firmwares/6lbr-demo-ndp && $(MAKE) TARGET=sky clean
 	cd ${CONTIKIDIR}/examples/ipv6/slip-radio && $(MAKE) TARGET=sky clean
+	cd ${CONTIKIDIR}/../contiki-darko/examples/6lowpan-nd-rpl && $(MAKE) TARGET=z1 clean
 
 build-cooja-firmwares:
 	cd ${COOJAGEN}/firmwares/6lbr-demo && $(MAKE) TARGET=sky

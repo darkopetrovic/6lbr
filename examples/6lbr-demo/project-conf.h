@@ -147,7 +147,7 @@
 #define NETSTACK_CONF_MAC     		csma_driver
 
 #undef NETSTACK_CONF_RDC
-#define NETSTACK_CONF_RDC     		nullrdc_driver
+#define NETSTACK_CONF_RDC     		contikimac_driver
 
 #undef SKY_CONF_MAX_TX_POWER
 #define SKY_CONF_MAX_TX_POWER 	31

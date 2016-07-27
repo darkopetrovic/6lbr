@@ -10,7 +10,7 @@ CONTIKI=../../..
 
 UIP_CONF_IPV6=1
 UIP_CONF_RPL=0
-DEFINES=NETSTACK_CONF_RDC=nullrdc_driver
+DEFINES=NETSTACK_CONF_RDC=contikimac_driver
 
 #linker optimizations
 SMALL=1

@@ -151,8 +151,8 @@ public class MoteInterfaceViewer extends VisPlugin implements HasQuickHelp, Mote
     mainScrollPane.setBorder(BorderFactory.createEmptyBorder(0,2,0,2));
     this.setContentPane(mainScrollPane);
     pack();
-    setPreferredSize(new Dimension(350,300));
-    setSize(new Dimension(350,300));
+    setPreferredSize(new Dimension(900,500));
+    setSize(new Dimension(900,500));
 
     try {
       setSelected(true);

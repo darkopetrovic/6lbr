@@ -90,7 +90,7 @@
     <plugin_config>
       <filter />
     </plugin_config>
-    <width>1213</width>
+    <width>1140</width>
     <z>7</z>
     <height>821</height>
     <location_x>466</location_x>
@@ -99,11 +99,7 @@
   <plugin>
     org.contikios.cooja.plugins.Notes
     <plugin_config>
-      <notes>6LBR Test Support
-
-This is an automatically generated COOJA simulation file
-
-more information: https://github.com/cetic/6lbr/wiki/6LBR-Test-Environment</notes>
+      <notes>Simulations of 6lowpan-nd optimization with RPL.</notes>
       <decorations>true</decorations>
     </plugin_config>
     <width>932</width>
@@ -149,13 +145,13 @@ while (true) {&#xD;
     <location_x>3</location_x>
     <location_y>646</location_y>
   </plugin>
-  <plugin>
+<!--   <plugin>
     be.cetic.cooja.plugins.RadioLoggerHeadless
     <width>216</width>
     <z>0</z>
     <height>103</height>
     <location_x>1501</location_x>
     <location_y>594</location_y>
-  </plugin>
+  </plugin> -->
 </simconf>
 
