@@ -92,7 +92,7 @@
     </plugin_config>
     <width>1140</width>
     <z>7</z>
-    <height>821</height>
+    <height>740</height>
     <location_x>466</location_x>
     <location_y>161</location_y>
   </plugin>
@@ -140,10 +140,18 @@ while (true) {&#xD;
       <active>false</active>
     </plugin_config>
     <width>462</width>
-    <z>3</z>
-    <height>335</height>
+    <z>0</z>
+    <height>500</height>
     <location_x>3</location_x>
-    <location_y>646</location_y>
+    <location_y>400</location_y>
+  </plugin>
+  <plugin>
+    org.contikios.cooja.plugins.TimeLine
+    <width>1600</width>
+    <z>1</z>
+    <height>200</height>
+    <location_x>1</location_x>
+    <location_y>900</location_y>
   </plugin>
 <!--   <plugin>
     be.cetic.cooja.plugins.RadioLoggerHeadless

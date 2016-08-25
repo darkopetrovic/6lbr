@@ -9,12 +9,14 @@ radio_model = 'udgm'
 tx_range = 45
 tx_interference = 45
 topology = 'preset'
-#preset_data_path = 'coojagen/templates/preset_1dag_1router_2nodes'
-preset_data_path = 'coojagen/templates/preset_1dag_2routers_2nodes'
+#preset_data_path = 'coojagen/templates/preset_1dag_1node'
+preset_data_path = 'coojagen/templates/preset_1dag_1router_2nodes'
+#preset_data_path = 'coojagen/templates/preset_1dag_2routers_2nodes'
 mote_types=[]
 multi_br=0
 
 assignment = {'all':'node', '0':'slipradio', '1':'router', '2':'router'}
+#assignment = {'all':'router', '0':'slipradio'}
 
 mote_type_slipradio = {	'shortname':'slipradio', 
 			'fw_folder':'[CONTIKI_DIR]/examples/ipv6/slip-radio/', 
