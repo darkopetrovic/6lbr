@@ -238,7 +238,7 @@ PROCESS_THREAD(slip_radio_process, ev, data)
     if(etimer_expired(&et)) {
       etimer_reset(&et);
 #ifdef SLIP_RADIO_CONF_SENSORS
-      SLIP_RADIO_CONF_SENSORS.send();
+      //SLIP_RADIO_CONF_SENSORS.send();
 #endif
     }
   }

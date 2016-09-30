@@ -55,7 +55,7 @@
 #include "net/rpl/rpl-private.h"
 #endif /* CONF_6LOWPAN_ND */
 
-#define DEBUG DEBUG_NONE
+#define DEBUG DEBUG_PRINT
 #include "net/ip/uip-debug.h"
 
 #ifdef UIP_CONF_DS6_NEIGHBOR_STATE_CHANGED

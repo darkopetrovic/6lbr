@@ -206,7 +206,7 @@
       <coloring />
     </plugin_config>
     <width>1140</width>
-    <z>4</z>
+    <z>2</z>
     <height>740</height>
     <location_x>466</location_x>
     <location_y>161</location_y>
@@ -224,7 +224,7 @@ Filters that can be used:
       <decorations>true</decorations>
     </plugin_config>
     <width>932</width>
-    <z>8</z>
+    <z>6</z>
     <height>162</height>
     <location_x>745</location_x>
     <location_y>-1</location_y>
@@ -264,7 +264,7 @@ Filters that can be used:
       <active>false</active>
     </plugin_config>
     <width>690</width>
-    <z>6</z>
+    <z>4</z>
     <height>729</height>
     <location_x>3</location_x>
     <location_y>171</location_y>
@@ -283,7 +283,7 @@ Filters that can be used:
       <zoomfactor>50000.0</zoomfactor>
     </plugin_config>
     <width>1600</width>
-    <z>5</z>
+    <z>3</z>
     <height>200</height>
     <location_x>1</location_x>
     <location_y>900</location_y>
@@ -296,7 +296,7 @@ Filters that can be used:
       <bound>true</bound>
     </plugin_config>
     <width>459</width>
-    <z>10</z>
+    <z>8</z>
     <height>119</height>
     <location_x>5</location_x>
     <location_y>525</location_y>
@@ -306,7 +306,7 @@ Filters that can be used:
     <mote_arg>1</mote_arg>
     <plugin_config />
     <width>250</width>
-    <z>11</z>
+    <z>9</z>
     <height>100</height>
     <location_x>161</location_x>
     <location_y>532</location_y>
@@ -316,7 +316,7 @@ Filters that can be used:
     <mote_arg>2</mote_arg>
     <plugin_config />
     <width>250</width>
-    <z>9</z>
+    <z>7</z>
     <height>100</height>
     <location_x>161</location_x>
     <location_y>532</location_y>
@@ -325,36 +325,10 @@ Filters that can be used:
     be.cetic.cooja.plugins.RadioLoggerHeadless
     <plugin_config />
     <width>216</width>
-    <z>7</z>
+    <z>5</z>
     <height>103</height>
     <location_x>49</location_x>
     <location_y>656</location_y>
-  </plugin>
-  <plugin>
-    org.contikios.cooja.plugins.MoteInterfaceViewer
-    <mote_arg>4</mote_arg>
-    <plugin_config>
-      <interface>Serial port</interface>
-      <scrollpos>0,0</scrollpos>
-    </plugin_config>
-    <width>900</width>
-    <z>3</z>
-    <height>500</height>
-    <location_x>36</location_x>
-    <location_y>327</location_y>
-  </plugin>
-  <plugin>
-    org.contikios.cooja.plugins.MoteInterfaceViewer
-    <mote_arg>3</mote_arg>
-    <plugin_config>
-      <interface>Serial port</interface>
-      <scrollpos>0,0</scrollpos>
-    </plugin_config>
-    <width>900</width>
-    <z>2</z>
-    <height>500</height>
-    <location_x>138</location_x>
-    <location_y>372</location_y>
   </plugin>
 </simconf>
 

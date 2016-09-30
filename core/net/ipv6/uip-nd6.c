@@ -87,6 +87,8 @@
 #include "packet-filter.h"
 #endif
 
+extern uint8_t cetic_6lbr_started;
+
 #if UIP_CONF_IPV6
 /*------------------------------------------------------------------*/
 #define DEBUG DEBUG_PRINT
@@ -1015,7 +1017,9 @@ rs_input(void)
   UIP_STAT(++uip_stat.nd6.recv);
 
 #if UIP_CONF_6L_ROUTER
-  if(non_router()) {
+  /** Send RA only when the border router has configured
+      a global address. Need to wait the function cetic_6lbr_init_finalize(). */
+  if(non_router() || cetic_6lbr_started==0) {
     PRINTF("RS discard because no yet router\n");
     goto discard;
   }

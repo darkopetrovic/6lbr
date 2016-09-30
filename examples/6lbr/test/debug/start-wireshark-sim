@@ -1,0 +1,3 @@
+#!/bin/bash 
+LAST_PCAP_FILE="$(ls -Art /opt/contiki/6lbr/tools/cooja/build/* | grep radiolog | tail -n 1)"
+tail -c +1 -f $LAST_PCAP_FILE | sudo wireshark -k -i -

@@ -365,6 +365,14 @@ eth_output(const uip_lladdr_t * src, const uip_lladdr_t * dest)
   }
 #endif
 
+  //Filter out RA 
+  if(UIP_IP_BUF->proto == UIP_PROTO_ICMP6 &&
+     UIP_ICMP_BUF->type == ICMP6_RA) {
+    LOG6LBR_PRINTF(PACKET, PF_OUT, "eth_output: Filtering out RA traffic\n");
+    return 0;
+  }
+
+
   //IP packet alteration
   //--------------------
 #if CETIC_6LBR_ROUTER

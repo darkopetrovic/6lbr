@@ -78,6 +78,8 @@
 int ethernet_ready = 0;
 int eth_mac_addr_ready = 0;
 
+uint8_t cetic_6lbr_started = 0;
+
 //WSN
 uip_lladdr_t wsn_mac_addr;
 uip_ip6addr_t wsn_net_prefix;
@@ -386,6 +388,7 @@ PROCESS_THREAD(cetic_6lbr_process, ev, data)
   }
   cetic_6lbr_init_finalize();
 
+
 #if WEBSERVER
   process_start(&webserver_nogui_process, NULL);
 #endif
@@ -408,6 +411,8 @@ PROCESS_THREAD(cetic_6lbr_process, ev, data)
 #endif
 
   LOG6LBR_INFO("CETIC 6LBR Started\n");
+
+  cetic_6lbr_started = 1;
 
   PROCESS_WAIT_EVENT_UNTIL(ev == cetic_6lbr_restart_event);
   etimer_set(&timer, CLOCK_SECOND);
