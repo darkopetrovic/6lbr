@@ -9,7 +9,7 @@
   <project EXPORT="discard">[APPS_DIR]/powertracker</project>
   <project EXPORT="discard">[APPS_DIR]/radiologger-headless</project>
   <simulation>
-    <title>Debug OMA LwM2M with 6lowpan-nd and RPL (wismote).</title>
+    <title>Debug OMA LwM2M with 6lowpan-nd and RPL (z1).</title>
     <speedlimit>1.0</speedlimit>
     <randomseed>generated</randomseed>
     <motedelay_us>1000000</motedelay_us>
@@ -44,12 +44,12 @@
       <moteinterface>org.contikios.cooja.mspmote.interfaces.MspDebugOutput</moteinterface>
     </motetype>
     <motetype>
-      org.contikios.cooja.mspmote.WismoteMoteType
+      org.contikios.cooja.mspmote.Z1MoteType
       <identifier>node</identifier>
       <description>ipso hosts</description>
       <source EXPORT="discard">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja.c</source>
       <commands EXPORT="discard" />
-      <firmware EXPORT="copy">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja-host.wismote</firmware>
+      <firmware EXPORT="copy">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja-host.z1</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
@@ -64,12 +64,12 @@
       <moteinterface>org.contikios.cooja.mspmote.interfaces.MspDebugOutput</moteinterface>
     </motetype>
     <motetype>
-      org.contikios.cooja.mspmote.WismoteMoteType
+      org.contikios.cooja.mspmote.Z1MoteType
       <identifier>router</identifier>
       <description>ispo router</description>
       <source EXPORT="discard">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja.c</source>
       <commands EXPORT="discard" />
-      <firmware EXPORT="copy">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja-router.wismote</firmware>
+      <firmware EXPORT="copy">/opt/contiki/contiki-darko/examples/smart-ipv6-sensor/ipso-cooja/ipso-cooja-router.z1</firmware>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>

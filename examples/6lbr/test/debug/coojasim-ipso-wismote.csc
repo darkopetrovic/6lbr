@@ -104,8 +104,8 @@
       <breakpoints />
       <interface_config>
         org.contikios.cooja.interfaces.Position
-        <x>32.983774508807755</x>
-        <y>-47.39026240546923</y>
+        <x>49.49438935356536</x>
+        <y>-47.07901986459873</y>
         <z>0.0</z>
       </interface_config>
       <interface_config>
@@ -116,39 +116,13 @@
         org.contikios.cooja.mspmote.interfaces.MspMoteID
         <id>2</id>
       </interface_config>
-      <interface_config>
-        org.contikios.cooja.mspmote.interfaces.MspDefaultSerial
-        <history>ifconfig~;</history>
-      </interface_config>
       <motetype_identifier>router</motetype_identifier>
-    </mote>
-    <mote>
-      <breakpoints />
-      <interface_config>
-        org.contikios.cooja.interfaces.Position
-        <x>-0.046959500797587594</x>
-        <y>-32.88170730868689</y>
-        <z>0.0</z>
-      </interface_config>
-      <interface_config>
-        org.contikios.cooja.mspmote.interfaces.MspClock
-        <deviation>1.0</deviation>
-      </interface_config>
-      <interface_config>
-        org.contikios.cooja.mspmote.interfaces.MspMoteID
-        <id>6</id>
-      </interface_config>
-      <interface_config>
-        org.contikios.cooja.mspmote.interfaces.MspDefaultSerial
-        <history>ifconfig~;help~;ifconfig~;</history>
-      </interface_config>
-      <motetype_identifier>node</motetype_identifier>
     </mote>
   </simulation>
   <plugin>
     org.contikios.cooja.plugins.SimControl
     <width>280</width>
-    <z>7</z>
+    <z>4</z>
     <height>160</height>
     <location_x>465</location_x>
     <location_y>0</location_y>
@@ -162,10 +136,10 @@
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.MoteTypeVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.LEDVisualizerSkin</skin>
-      <viewport>2.8538910550483805 0.0 0.0 2.8538910550483805 112.9572225257107 297.0735376357077</viewport>
+      <viewport>2.3406864131770297 0.0 0.0 2.3406864131770297 76.29414095503775 270.91600806284185</viewport>
     </plugin_config>
     <width>462</width>
-    <z>0</z>
+    <z>3</z>
     <height>400</height>
     <location_x>1</location_x>
     <location_y>1</location_y>
@@ -173,13 +147,13 @@
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter />
+      <filter>ID:2</filter>
       <formatted_time />
       <coloring />
     </plugin_config>
     <width>1140</width>
-    <z>6</z>
-    <height>740</height>
+    <z>5</z>
+    <height>675</height>
     <location_x>466</location_x>
     <location_y>161</location_y>
   </plugin>
@@ -196,7 +170,7 @@ Filters that can be used:
       <decorations>true</decorations>
     </plugin_config>
     <width>932</width>
-    <z>5</z>
+    <z>9</z>
     <height>162</height>
     <location_x>745</location_x>
     <location_y>-1</location_y>
@@ -236,7 +210,7 @@ Filters that can be used:
       <active>false</active>
     </plugin_config>
     <width>690</width>
-    <z>4</z>
+    <z>6</z>
     <height>729</height>
     <location_x>3</location_x>
     <location_y>171</location_y>
@@ -246,17 +220,16 @@ Filters that can be used:
     <plugin_config>
       <mote>0</mote>
       <mote>1</mote>
-      <mote>2</mote>
       <showRadioRXTX />
       <showRadioHW />
       <showLEDs />
       <zoomfactor>50000.0</zoomfactor>
     </plugin_config>
     <width>1600</width>
-    <z>3</z>
-    <height>200</height>
-    <location_x>1</location_x>
-    <location_y>900</location_y>
+    <z>7</z>
+    <height>269</height>
+    <location_x>6</location_x>
+    <location_y>834</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.serialsocket.SerialSocketServer
@@ -266,20 +239,10 @@ Filters that can be used:
       <bound>true</bound>
     </plugin_config>
     <width>459</width>
-    <z>2</z>
+    <z>8</z>
     <height>119</height>
     <location_x>5</location_x>
     <location_y>525</location_y>
-  </plugin>
-  <plugin>
-    de.fau.cooja.plugins.Serial2Pty
-    <mote_arg>1</mote_arg>
-    <plugin_config />
-    <width>250</width>
-    <z>1</z>
-    <height>100</height>
-    <location_x>161</location_x>
-    <location_y>532</location_y>
   </plugin>
 </simconf>
 
