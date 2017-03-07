@@ -517,7 +517,7 @@ bridge_output(const uip_lladdr_t * dest)
   if(!isBroadcast) {
     LOG6LBR_LLADDR_PRINTF(PACKET, PF_OUT, dest, "bridge_output: Sending packet to ");
   } else {
-    LOG6LBR_PRINTF(PACKET, PF_OUT, "bridge_output: Sending packet to Broadcast\n");
+    LOG6LBR_PRINTF(PACKET, PF_OUT, "bridge_output2: Sending packet to Broadcast\n");
   }
   if(IS_EUI48_ADDR(dest)) {
     eth_output(NULL, dest);
@@ -527,7 +527,7 @@ bridge_output(const uip_lladdr_t * dest)
     //Obviously we can not guess the target segment for a multicast packet
     //So we have to check the packet source prefix (and match it on the Ethernet segment prefix)
     //or, in case of link-local packet, check packet type and/or packet data
-    if(uip_ipaddr_cmp(&wsn_ip_local_addr, &UIP_IP_BUF->srcipaddr)
+    /*if(uip_ipaddr_cmp(&wsn_ip_local_addr, &UIP_IP_BUF->srcipaddr)
        || (UIP_IP_BUF->proto == UIP_PROTO_ICMP6
         && UIP_ICMP_BUF->type == ICMP6_RA)
        || (UIP_IP_BUF->proto == UIP_PROTO_ICMP6
@@ -542,7 +542,9 @@ bridge_output(const uip_lladdr_t * dest)
     } else {
       wireless_output(NULL, dest);
       eth_output(NULL, dest);
-    }
+    }*/
+    wireless_output(NULL, dest);
+    eth_output(NULL, dest);
   }
   return 0;
 }

@@ -296,7 +296,7 @@ ns_input(void)
   PRINT6ADDR(&UIP_IP_BUF->srcipaddr);
   PRINTF(" to ");
   PRINT6ADDR(&UIP_IP_BUF->destipaddr);
-  PRINTF(" with target address");
+  PRINTF(" with target address ");
   PRINT6ADDR((uip_ipaddr_t *) (&UIP_ND6_NS_BUF->tgtipaddr));
   PRINTF("\n");
   TCPIP_ANNOTATE("rNS");
@@ -703,10 +703,10 @@ na_input(void)
 #if CETIC_6LBR_SMARTBRIDGE
   uip_ds6_route_t * route;
 #endif
-#if !CONF_6LOWPAN_ND
+
   uint8_t is_llchange;
   uint8_t is_override;
-#endif /* !CONF_6LOWPAN_ND */
+
   uint8_t is_router;
   uint8_t is_solicited;
 
@@ -731,11 +731,10 @@ na_input(void)
   is_router = ((UIP_ND6_NA_BUF->flagsreserved & UIP_ND6_NA_FLAG_ROUTER));
   is_solicited =
     ((UIP_ND6_NA_BUF->flagsreserved & UIP_ND6_NA_FLAG_SOLICITED));
-#if !CONF_6LOWPAN_ND
+
   is_llchange = 0;
   is_override =
     ((UIP_ND6_NA_BUF->flagsreserved & UIP_ND6_NA_FLAG_OVERRIDE));
-#endif /* !CONF_6LOWPAN_ND */
 
 #if UIP_CONF_6LN
   /*
@@ -830,14 +829,14 @@ na_input(void)
     PRINTF("NA received is bad\n");
     goto discard;
   } else {
-#if !CONF_6LOWPAN_ND
+
     uip_lladdr_t *lladdr;
-#endif /* CONF_6LOWPAN_ND */
+
     nbr = uip_ds6_nbr_lookup(&UIP_ND6_NA_BUF->tgtipaddr);
     if(nbr == NULL) {
       goto discard;
     }
-#if CONF_6LOWPAN_ND
+
     if(nd6_opt_aro != NULL) {
       defrt = uip_ds6_defrt_lookup(&UIP_ND6_NA_BUF->tgtipaddr);
       if(defrt != NULL) {
@@ -872,64 +871,64 @@ na_input(void)
           }
         }
       }
-    }
-#else /* CONF_6LOWPAN_ND */
-    lladdr = (uip_lladdr_t *)uip_ds6_nbr_get_ll(nbr);
-    if(nd6_opt_llao != 0) {
-      is_llchange =
-        memcmp(&nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET], (void *)lladdr,
-               UIP_LLADDR_LEN);
-    }
-    if(nbr->state == NBR_INCOMPLETE) {
-      if(nd6_opt_llao == NULL) {
-        goto discard;
-      }
-      memcpy(lladdr, &nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
-	     UIP_LLADDR_LEN);
-      if(is_solicited) {
-        nbr->state = NBR_REACHABLE;
-        nbr->nscount = 0;
-
-        /* reachable time is stored in ms */
-        stimer_set(&(nbr->reachable), uip_ds6_if.reachable_time / 1000);
-
-      } else {
-        nbr->state = NBR_STALE;
-      }
-      nbr->isrouter = is_router;
     } else {
-      if(!is_override && is_llchange) {
-        if(nbr->state == NBR_REACHABLE) {
+
+      lladdr = (uip_lladdr_t *)uip_ds6_nbr_get_ll(nbr);
+      if(nd6_opt_llao != 0) {
+        is_llchange =
+          memcmp(&nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET], (void *)lladdr,
+                 UIP_LLADDR_LEN);
+      }
+      if(nbr->state == NBR_INCOMPLETE) {
+        if(nd6_opt_llao == NULL) {
+          goto discard;
+        }
+        memcpy(lladdr, &nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+  	     UIP_LLADDR_LEN);
+        if(is_solicited) {
+          nbr->state = NBR_REACHABLE;
+          nbr->nscount = 0;
+
+          /* reachable time is stored in ms */
+          stimer_set(&(nbr->reachable), uip_ds6_if.reachable_time / 1000);
+
+        } else {
           nbr->state = NBR_STALE;
         }
-        goto discard;
+        nbr->isrouter = is_router;
       } else {
-        if(is_override || (!is_override && nd6_opt_llao != 0 && !is_llchange)
-           || nd6_opt_llao == 0) {
-          if(nd6_opt_llao != 0) {
-            memcpy(lladdr, &nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
-		   UIP_LLADDR_LEN);
+        if(!is_override && is_llchange) {
+          if(nbr->state == NBR_REACHABLE) {
+            nbr->state = NBR_STALE;
           }
-          if(is_solicited) {
-            nbr->state = NBR_REACHABLE;
-            /* reachable time is stored in ms */
-            stimer_set(&(nbr->reachable), uip_ds6_if.reachable_time / 1000);
-          } else {
-            if(nd6_opt_llao != 0 && is_llchange) {
-              nbr->state = NBR_STALE;
+          goto discard;
+        } else {
+          if(is_override || (!is_override && nd6_opt_llao != 0 && !is_llchange)
+             || nd6_opt_llao == 0) {
+            if(nd6_opt_llao != 0) {
+              memcpy(lladdr, &nd6_opt_llao[UIP_ND6_OPT_DATA_OFFSET],
+  		   UIP_LLADDR_LEN);
+            }
+            if(is_solicited) {
+              nbr->state = NBR_REACHABLE;
+              /* reachable time is stored in ms */
+              stimer_set(&(nbr->reachable), uip_ds6_if.reachable_time / 1000);
+            } else {
+              if(nd6_opt_llao != 0 && is_llchange) {
+                nbr->state = NBR_STALE;
+              }
             }
           }
         }
-      }
-      if(nbr->isrouter && !is_router) {
-        defrt = uip_ds6_defrt_lookup(&UIP_IP_BUF->srcipaddr);
-        if(defrt != NULL) {
-          uip_ds6_defrt_rm(defrt);
+        if(nbr->isrouter && !is_router) {
+          defrt = uip_ds6_defrt_lookup(&UIP_IP_BUF->srcipaddr);
+          if(defrt != NULL) {
+            uip_ds6_defrt_rm(defrt);
+          }
         }
+        nbr->isrouter = is_router;
       }
-      nbr->isrouter = is_router;
     }
-#endif /* CONF_6LOWPAN_ND */
   }
 #if UIP_CONF_IPV6_QUEUE_PKT
   /* The nbr is now reachable, check if we had buffered a pkt for it */
